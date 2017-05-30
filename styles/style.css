@@ -67,6 +67,17 @@ body {
     margin-left: 0px;
 }
 
+.loading {
+    width: 100px;
+    margin-top: 35vh;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.results {
+    display: none;
+}
+
 #details-link {
     text-decoration: underline;
     cursor: pointer;

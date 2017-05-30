@@ -183,7 +183,9 @@ var ViewModel = {
     },
 
     getDetails: function() {
-
+        $('#loading').show();
+        $('#results').hide();
+        $('#details').addClass('show');
         $.ajax({
             "url": "http://localhost:8080/business/search",
             "method": "POST",
@@ -209,7 +211,6 @@ var ViewModel = {
         this.restaurantPrice(details.price);
         this.restaurantRating(details.rating);
         this.restaurantCuisine(details.categories[0].title)
-        $('#details').addClass('show');
     },
 
     getReviews: function(id) {
@@ -233,6 +234,12 @@ var ViewModel = {
         for(var i = 0; i < 3; i++) {
             ViewModel.restaurantReviews.push(new ViewModel.reviewItem(reviews[i]));
         }
+        ViewModel.showResults();
+    },
+    
+    showResults: function() {
+        $('#loading').hide();
+        $('#results').fadeIn();
     },
 
     hideDetails: function() {

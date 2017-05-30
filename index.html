@@ -25,17 +25,22 @@
 
         </div>
         <div id="details" class="details">
-            <span data-bind="click: hideDetails" class="close-details">X</span>
-            <h2 data-bind="text: restaurantName"></h2>
-            <h3>Address</h3>
-            <span><span data-bind="text: restaurantAddressOne"></span> <span data-bind="text: restaurantAddressTwo"></span></span></br>
-            <span><span data-bind="text: restaurantCity"></span>, <span data-bind="text: restaurantState"></span> <span data-bind="text: restaurantZip"></span></span></br>
-            <h3>Details</h3>
-            <span>Cost: <span data-bind="text: restaurantPrice"></span>  Rating: <span data-bind="text: restaurantRating"></span> Cuisine: <span data-bind="text: restaurantCuisine"></span></br></span>
-            <h3>Reviews</h3>
-            <ul data-bind="foreach: restaurantReviews">
-                <li data-bind="text: $data.text"></li>
-            </ul>
+            <div id="loading" class="loading">
+                <img src="./assets/ajax-loader.gif">
+            </div>
+             <div id="results" class="results">
+                <span data-bind="click: hideDetails" class="close-details">X</span>
+                <h2 data-bind="text: restaurantName"></h2>
+                <h3>Address</h3>
+                <span><span data-bind="text: restaurantAddressOne"></span> <span data-bind="text: restaurantAddressTwo"></span></span></br>
+                <span><span data-bind="text: restaurantCity"></span>, <span data-bind="text: restaurantState"></span> <span data-bind="text: restaurantZip"></span></span></br>
+                <h3>Details</h3>
+                <span>Cost: <span data-bind="text: restaurantPrice"></span>  Rating: <span data-bind="text: restaurantRating"></span> Cuisine: <span data-bind="text: restaurantCuisine"></span></br></span>
+                <h3>Reviews</h3>
+                <ul data-bind="foreach: restaurantReviews">
+                    <li data-bind="text: $data.text"></li>
+                </ul>
+            </div>
         </div>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
     <script type="text/javascript" src="scripts/app.js"></script>
