@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+       <link rel="stylesheet" href="styles/style.css">
+       <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+       
+    </head>
+    <body>
+        <nav id="nav" class="nav">
+            <span data-bind="click: listToggleClick" class="toggle" ><i class="fa fa-bars" aria-hidden="true"></i></span>
+        </nav>
+        <div id="list" class="sidebar hide">
+            <label> Filter Results</label></br>
+            <input id="filter" type="text">
+
+            <button data-bind="click: filterList">Filter</button>
+            <button data-bind="click: clearFilter">Clear</button>
+            <ul data-bind="foreach: restaurantList">
+                <li data-bind="text: $data.name, click: $parent.listClick"></li>
+            </ul>
+        </div>
+        <div id="map" class="map" data-bind="event: {onload: setTimeout(makeMarkers, 500)}">
+
+        </div>
+        <div id="details" class="details">
+            <span data-bind="click: hideDetails" class="close-details">X</span>
+            <h2 data-bind="text: restaurantName"></h2>
+            <h3>Address</h3>
+            <span><span data-bind="text: restaurantAddressOne"></span> <span data-bind="text: restaurantAddressTwo"></span></span></br>
+            <span><span data-bind="text: restaurantCity"></span>, <span data-bind="text: restaurantState"></span> <span data-bind="text: restaurantZip"></span></span></br>
+            <h3>Details</h3>
+            <span>Cost: <span data-bind="text: restaurantPrice"></span>  Rating: <span data-bind="text: restaurantRating"></span> Cuisine: <span data-bind="text: restaurantCuisine"></span></br></span>
+            <h3>Reviews</h3>
+            <ul data-bind="foreach: restaurantReviews">
+                <li data-bind="text: $data.text"></li>
+            </ul>
+        </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+    <script type="text/javascript" src="scripts/app.js"></script>
+    <script async src="http://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAEdLMqFGoZeE8GYhhKP-hQSEoPFmIUIPI&callback=init"></script>
+    <script type="text/javascript">
+        function init() {
+            GoogleMaps.init();
+        }
+    </script>
+    </body>
+</html>
