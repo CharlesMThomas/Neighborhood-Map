@@ -22,13 +22,16 @@
             </ul>
         </div>
         <div id="map" class="map" data-bind="event: {onload: setTimeout(makeMarkers, 500)}">
-
         </div>
         <div id="details" class="details">
-            <div id="loading" class="loading">
-                <img src="./assets/ajax-loader.gif">
+            <div id="loading" class="status">
+                <img class="loading-gif" src="./assets/ajax-loader.gif">
             </div>
-             <div id="results" class="results">
+            <div id="fail" class="status">
+                <span data-bind="click: hideDetails" class="close-details">&#10060;</span>
+                <h3>Unable to load restaurant data. Please try again.</h3>
+            </div>
+            <div id="results" class="results">
                 <span data-bind="click: hideDetails" class="close-details">&#10060;</span>
                 <h2 data-bind="text: restaurantName"></h2>
                 <h3>Address</h3>

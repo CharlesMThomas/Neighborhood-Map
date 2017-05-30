@@ -183,9 +183,13 @@ var ViewModel = {
     },
 
     getDetails: function() {
+        // Reset divs prior to loading new details
         $('#loading').show();
         $('#results').hide();
+        $('#fail').hide();
         $('#details').addClass('show');
+        
+        // Perform API call
         $.ajax({
             "url": "http://localhost:8080/business/search",
             "method": "POST",
@@ -197,6 +201,9 @@ var ViewModel = {
         }).done(function (response) {
             data.restaurant = JSON.parse(response);
             ViewModel.getReviews(data.restaurant.businesses[0].id);
+        }).fail(function() {
+            $('#loading').hide();
+            $('#fail').fadeIn();
         });
 
     },
@@ -225,7 +232,10 @@ var ViewModel = {
             data.reviews = JSON.parse(response);
             ViewModel.showDetails(data.restaurant.businesses[0]);
             ViewModel.showReviews(data.reviews.reviews);
-        });
+        }).fail(function() {
+            $('#loading').hide();
+            $('#fail').fadeIn();
+        });;
 
     },
 
