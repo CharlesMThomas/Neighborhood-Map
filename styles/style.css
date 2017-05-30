@@ -94,5 +94,6 @@ li {
 
 .close-details {
     float: right;
+    margin-top: -30px;
     cursor: pointer;
 }
