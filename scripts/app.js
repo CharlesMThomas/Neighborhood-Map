@@ -168,6 +168,7 @@ var ViewModel = {
         if (data.listShown == true) {
             this.hideList();
         } else {
+            this.hideDetails();
             this.showList();
         }
     },
@@ -183,6 +184,7 @@ var ViewModel = {
     },
 
     getDetails: function() {
+        this.hideList();
         // Reset divs prior to loading new details
         $('#loading').show();
         $('#results').hide();
