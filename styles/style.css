@@ -72,12 +72,13 @@ body {
 }
 
 .loading-gif {
+    margin-top: 23vh;
     width: 125px;
 }
 
 .loading-msg {
     position: absolute;
-    top: 110px;
+    top: 38vh;
     left: 140px;
 }
 
