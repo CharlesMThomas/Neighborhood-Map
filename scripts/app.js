@@ -162,6 +162,7 @@ var ViewModel = {
             }
         });
         GoogleMaps.selectMarker(newMarker, data.selected);
+        ViewModel.getDetails();
     },
 
     listToggleClick: function() {
