@@ -72,7 +72,13 @@ body {
 }
 
 .loading-gif {
-    margin-top: 20px;
+    width: 125px;
+}
+
+.loading-msg {
+    position: absolute;
+    top: 110px;
+    left: 140px;
 }
 
 .results {
