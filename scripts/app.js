@@ -41,7 +41,7 @@ var GoogleMaps = {
         data.selected = newMarker;
         newMarker.setAnimation(google.maps.Animation.BOUNCE);
         map.panTo(newMarker.position);
-        this.makeInfowindow(newMarker);
+        GoogleMaps.makeInfowindow(newMarker);
         ViewModel.hideList();
     },
 
@@ -98,8 +98,8 @@ var ViewModel = {
     },
 
     filterList: function() {
-        var filterText = document.getElementById('filter').value;
-        this.restaurantList([]);
+        var filterText = document.getElementById('filter').value.toLowerCase();
+        ViewModel.restaurantList([]);
 
         ViewModel.markers.forEach(function(marker) {
             marker.setMap(null);
@@ -107,8 +107,8 @@ var ViewModel = {
 
         ViewModel.markers = [];
 
-        data.restaurants.forEach(function(restaurantData) {
-            if (restaurantData.name.indexOf(filterText) == 0) {
+       data.restaurants.forEach(function(restaurantData) {
+            if (restaurantData.name.toLowerCase().indexOf(filterText) == 0) {
                 ViewModel.restaurantList.push(new ViewModel.listItem(restaurantData));
             };
         });
@@ -167,29 +167,27 @@ var ViewModel = {
 
     listToggleClick: function() {
         if (data.listShown == true) {
-            this.hideList();
+            ViewModel.hideList();
         } else {
-            this.hideDetails();
-            this.showList();
+            ViewModel.hideDetails();
+            ViewModel.showList();
         }
     },
 
     hideList: function() {
-        document.getElementById("list").classList.add('hide');
+        $("#list").addClass('hide');
         data.listShown = false;
     },
 
     showList: function() {
-        document.getElementById("list").classList.remove('hide');
+        $("#list").removeClass('hide');
         data.listShown = true;
     },
 
     getDetails: function() {
-        this.hideList();
+        ViewModel.hideList();
         // Reset divs prior to loading new details
-        $('#loading').show();
-        $('#results').hide();
-        $('#fail').hide();
+        ViewModel.resetDetails();
         $('#details').addClass('show');
         
         // Perform API call
@@ -205,22 +203,21 @@ var ViewModel = {
             data.restaurant = JSON.parse(response);
             ViewModel.getReviews(data.restaurant.businesses[0].id);
         }).fail(function() {
-            $('#loading').hide();
-            $('#fail').fadeIn();
+            ViewModel.showFail();
         });
 
     },
 
     showDetails: function(details) {
-        this.restaurantName(details.name);
-        this.restaurantAddressOne(details.location.address1);
-        this.restaurantAddressTwo(details.location.address2);
-        this.restaurantCity(details.location.city);
-        this.restaurantState(details.location.state);
-        this.restaurantZip(details.location.zip_code);
-        this.restaurantPrice(details.price);
-        this.restaurantRating(details.rating);
-        this.restaurantCuisine(details.categories[0].title)
+        ViewModel.restaurantName(details.name);
+        ViewModel.restaurantAddressOne(details.location.address1);
+        ViewModel.restaurantAddressTwo(details.location.address2);
+        ViewModel.restaurantCity(details.location.city);
+        ViewModel.restaurantState(details.location.state);
+        ViewModel.restaurantZip(details.location.zip_code);
+        ViewModel.restaurantPrice(details.price);
+        ViewModel.restaurantRating(details.rating);
+        ViewModel.restaurantCuisine(details.categories[0].title)
     },
 
     getReviews: function(id) {
@@ -236,10 +233,14 @@ var ViewModel = {
             ViewModel.showDetails(data.restaurant.businesses[0]);
             ViewModel.showReviews(data.reviews.reviews);
         }).fail(function() {
-            $('#loading').hide();
-            $('#fail').fadeIn();
+            ViewModel.showFail();
         });;
 
+    },
+
+    showFail: function() {
+        $('#loading').hide();
+        $('#fail').fadeIn();
     },
 
     showReviews: function(reviews) {
@@ -253,6 +254,12 @@ var ViewModel = {
     showResults: function() {
         $('#loading').hide();
         $('#results').fadeIn();
+    },
+
+    resetDetails: function() {
+        $('#loading').show();
+        $('#results').hide();
+        $('#fail').hide();
     },
 
     hideDetails: function() {
