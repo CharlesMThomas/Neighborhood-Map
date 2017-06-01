@@ -13,11 +13,12 @@
         </nav>
         <div id="sidebar" class="sidebar hide">
             <div id="list" class="list">
-                <label> Filter Results</label></br>
-                <input id="filter" type="text">
 
-                <button data-bind="click: filterList">Filter</button>
+                <input id="filter" class="form-control" type="text" placeholder="Filter Results">
                 <button data-bind="click: clearFilter">Clear</button>
+                <button data-bind="click: filterList">Filter</button>
+
+
                 <ul data-bind="foreach: restaurantList">
                     <li data-bind="text: $data.name, click: $parent.listClick"></li>
                 </ul>
@@ -29,7 +30,7 @@
                 </div>
                 <div id="fail" class="status">
                     <span data-bind="click: hideDetails" class="show-results">Back to List</span>
-                    <h3>Unable to load restaurant data. Please try again.</h3>
+                    <h3 class="fail-msg">Unable to load restaurant data. Please try again.</h3>
                 </div>
                 <div id="results" class="results">
                     <span data-bind="click: hideDetails" class="show-results">Back to List</span>
