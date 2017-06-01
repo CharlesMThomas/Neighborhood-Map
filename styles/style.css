@@ -26,11 +26,7 @@ body {
     width: 300px;
     height: calc(100vh - 100px);
     padding: 25px;
-    background: #fcfcfc; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(left top, #fcfcfc, #e7e7e7); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(bottom right, #fcfcfc, #e7e7e7); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(bottom right, #fcfcfc, #e7e7e7); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to bottom right, #fcfcfc, #e7e7e7); /* Standard syntax */
+    background: #fff; /* For browsers that do not support gradients */
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
     z-index: 5000;
     -webkit-transition: margin-left 0.5s linear; /* Safari 3.1 to 6.0 */
@@ -41,6 +37,10 @@ body {
     margin-left: -360px;
 }
 
+.details {
+    display: none;
+}
+
 .main {
     height: calc(100vh - 50px);
     width: 100vw;
@@ -48,23 +48,6 @@ body {
 
 .map {
     height: calc(100vh - 50px);
-}
-
-.details {
-    position: absolute;
-    top: 50px;
-    margin-left: -375px;
-    width: 300px;
-    height: calc(100vh - 100px);
-    padding: 25px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    background-color: #fff;
-    -webkit-transition: margin-left 0.5s linear; /* Safari 3.1 to 6.0 */
-    transition: margin-left 0.5s linear;
-}
-
-.details.show {
-    margin-left: 0px;
 }
 
 .status {
@@ -100,8 +83,9 @@ li {
     padding: 5px 0;
 }
 
-.close-details {
+.show-results {
     float: right;
     margin-top: -30px;
     cursor: pointer;
+    text-decoration: underline;
 }

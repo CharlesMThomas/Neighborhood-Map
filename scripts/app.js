@@ -21,6 +21,9 @@ var GoogleMaps = {
 
         google.maps.event.addDomListener(infowindow, 'domready', function() {
             $('#details-link').click(function(){
+                if (data.listShown == false) {
+                    ViewModel.listToggleClick();
+                }
                 ViewModel.getDetails();
             });
         });
@@ -42,7 +45,6 @@ var GoogleMaps = {
         newMarker.setAnimation(google.maps.Animation.BOUNCE);
         map.panTo(newMarker.position);
         GoogleMaps.makeInfowindow(newMarker);
-        ViewModel.hideList();
     },
 
     makeInfowindow: function(marker) {
@@ -52,7 +54,9 @@ var GoogleMaps = {
         infowindow.addListener('closeclick', function() {
             infowindow.marker = null;
             marker.setAnimation();
-            $('#details').removeClass('show');
+            if (data.listShown == true) {
+                ViewModel.listToggleClick();
+            }
         });
 
         infowindow.setContent('<div>' + marker.name + '</br></br><span id="details-link">Click for Details</span></div>');
@@ -166,30 +170,23 @@ var ViewModel = {
     },
 
     listToggleClick: function() {
-        if (data.listShown == true) {
-            ViewModel.hideList();
-        } else {
-            ViewModel.hideDetails();
-            ViewModel.showList();
-        }
+        if (data.listShown == true ? ViewModel.hideList() : ViewModel.showList());
     },
 
     hideList: function() {
-        $("#list").addClass('hide');
+        $("#sidebar").addClass('hide');
         data.listShown = false;
     },
 
     showList: function() {
-        $("#list").removeClass('hide');
+        $("#sidebar").removeClass('hide');
         data.listShown = true;
     },
 
     getDetails: function() {
-        ViewModel.hideList();
         // Reset divs prior to loading new details
         ViewModel.resetDetails();
-        $('#details').addClass('show');
-        
+   
         // Perform API call
         $.ajax({
             "url": "http://localhost:8080/business/search",
@@ -260,10 +257,13 @@ var ViewModel = {
         $('#loading').show();
         $('#results').hide();
         $('#fail').hide();
+        $('#list').hide();
+        $('#details').fadeIn();
     },
 
     hideDetails: function() {
-        $('#details').removeClass('show');
+        $('#details').hide();
+        $('#list').fadeIn();
     }
 
 }
