@@ -2,7 +2,7 @@ body {
     margin: 0;
 }
 
-.nav {
+.navs {
     width: 100%;
     height: 50px;
     background-color: #333;
@@ -10,15 +10,15 @@ body {
 }
 
 .fa {
-    font-size: 26px !important;
+    float: right;
     margin-top: 12px;
     margin-right: 25px;
-    float: right;
+    font-size: 26px !important;
     color: #f7f7f7;
     cursor: pointer;
 }
 
-.sidebar {
+.sidebars {
     position: absolute;
     top: 50px;
     left: 0;
@@ -32,8 +32,28 @@ body {
     transition: margin-left 0.5s linear;
 }
 
-.sidebar.hide {
+.sidebars.hide {
     margin-left: -360px;
+}
+
+.lists ul li {
+   padding: 10px 25px 10px 25px;
+   cursor: pointer;
+   box-shadow: 0 0 2px rgba(0,0,0,0.1);
+}
+
+.lists ul li:hover {
+    background-color: #f7f7f7;
+}
+
+ul {
+    margin-top: 1px;
+    list-style-type: none;
+    padding-left: 0;
+}
+
+li {
+    padding: 5px 0;
 }
 
 .details {
@@ -41,54 +61,8 @@ body {
     padding: 25px;
 }
 
-.main {
-    height: calc(100vh - 50px);
-    width: 100vw;
-}
-
-.map {
-    height: calc(100vh - 50px);
-}
-
-.status {
+.statuses {
     text-align: center;
-}
-
-input {
-    height: 31px;
-    width: 200px;
-    border: 1px solid #ddd;
-    margin-top: 0px;
-    margin-left: 2px;
-    padding-left: 25px;
-}
-
-button {
-    border-radius: 0;
-    border: solid 1px #ddd;
-    padding: 10px 0;
-    width: 60px;
-    float:right;
-    background-color: #eee;
-    cursor: pointer;
-}
-
-.list ul li {
-   padding: 10px 25px 10px 25px;
-   cursor: pointer;
-   box-shadow: 0 0 2px rgba(0,0,0,0.1);
-}
-
-.list ul li:hover {
-    background-color: #f7f7f7;
-}
-
-ul {
-    margin-top: 1px;
-}
-
-.fail-msg {
-    margin-top: 35vh;
 }
 
 .loading-gif {
@@ -102,29 +76,47 @@ ul {
     left: 140px;
 }
 
+.fail-msg {
+    margin-top: 35vh;
+}
+
 .results {
     display: none;
 }
 
-#details-link {
+input {
+    margin-top: 0px;
+    margin-left: 2px;
+    padding-left: 25px;
+    height: 31px;
+    width: 200px;
+    border: 1px solid #ddd;
+}
+
+button {
+    float:right;
+    width: 60px;
+    padding: 10px 0;
+    background-color: #eee;
+    border-radius: 0;
+    border: solid 1px #ddd;
+    cursor: pointer;
+}
+
+.detail-links {
     text-decoration: underline;
     cursor: pointer;
 }
 
-ul {
-    list-style-type: none;
-    padding-left: 0;
-}
-
-li {
-    padding: 5px 0;
-}
-
-.show-results {
+.show-result-links {
     float: right;
     position: absolute;
     top: 10px;
     right: 10px;
     cursor: pointer;
     text-decoration: underline;
+}
+
+.maps {
+    height: calc(100vh - 50px);
 }

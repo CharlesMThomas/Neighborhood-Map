@@ -8,7 +8,7 @@ var GoogleMaps = {
         infowindow = new google.maps.InfoWindow();
 
         google.maps.event.addDomListener(infowindow, 'domready', function() {
-            $('#details-link').click(function(){
+            $('.detail-links').click(function(){
                 if (data.listShown == false) {
                     ViewModel.listToggleClick();
                 }
@@ -49,7 +49,7 @@ var GoogleMaps = {
             }
         });
 
-        infowindow.setContent('<div>' + marker.name + '</br></br><span id="details-link">Click for Details</span></div>');
+        infowindow.setContent('<div>' + marker.name + '</br></br><span class="detail-links">Click for Details</span></div>');
 
         infowindow.open(map, marker);
     }
@@ -247,15 +247,15 @@ var ViewModel = {
     
     showResults: function() {
         $('#loading').hide();
-        $('#results').fadeIn();
+        $('#result').fadeIn();
     },
 
     resetDetails: function() {
         $('#loading').show();
-        $('#results').hide();
+        $('#result').hide();
         $('#fail').hide();
         $('#list').hide();
-        $('#details').fadeIn();
+        $('#detail').fadeIn();
     },
 
     showDetails: function(details) {
@@ -271,7 +271,7 @@ var ViewModel = {
     },
 
     hideDetails: function() {
-        $('#details').hide();
+        $('#detail').hide();
         $('#list').fadeIn();
     }
 
