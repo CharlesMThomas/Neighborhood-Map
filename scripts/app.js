@@ -1,21 +1,9 @@
+/**
+ * Google Map Functions
+ */
 
-// Model
-var data = {
-    selected: null,
-    listShown: false,
-    restaurant: null,
-    reviews: null,
-    restaurants: [
-    {id: 0, name: "Citrola's on College", location: {lat: 26.556048, lng: -81.901234}},
-    {id: 1, name: "Cibo", location: {lat: 26.553572, lng: -81.909727}},
-    {id: 2, name: "Wok Cuisine-Chinese Restaurant", location: {lat: 26.581758, lng: -81.873441}},
-    {id: 3, name: "Cape Cod Fish Co", location: {lat: 26.516508, lng: -81.944959}},
-    {id: 4, name: "Thai Gardens", location: {lat: 26.555538, lng: -81.872587}}
-    ]
-};
-
-// Google Maps Functions
 var GoogleMaps = {
+    // Initialize Google Maps
     init: function() {
         infowindow = new google.maps.InfoWindow();
 
@@ -37,6 +25,7 @@ var GoogleMaps = {
         });
     },
 
+    // Animate the selected marker
     selectMarker: function(newMarker, currentMarker) {
         if (currentMarker && newMarker != currentMarker) {
             currentMarker.setAnimation();
@@ -47,10 +36,11 @@ var GoogleMaps = {
         GoogleMaps.makeInfowindow(newMarker);
     },
 
+    // Initialize infowindow and show it
     makeInfowindow: function(marker) {
         infowindow.marker = marker;
         infowindow.setContent('');
-        // Make sure the marker property is cleared if the infowindow is closed.
+        // Make sure the marker property is cleared out
         infowindow.addListener('closeclick', function() {
             infowindow.marker = null;
             marker.setAnimation();
@@ -65,7 +55,29 @@ var GoogleMaps = {
     }
 }
 
-// ViewModel
+
+/**
+ * Model
+ */
+
+var data = {
+    selected: null,
+    listShown: false,
+    restaurant: null,
+    reviews: null,
+    restaurants: [
+    {id: 0, name: "Citrola's on College", location: {lat: 26.556048, lng: -81.901234}},
+    {id: 1, name: "Cibo", location: {lat: 26.553572, lng: -81.909727}},
+    {id: 2, name: "Wok Cuisine-Chinese Restaurant", location: {lat: 26.581758, lng: -81.873441}},
+    {id: 3, name: "Cape Cod Fish Co", location: {lat: 26.516508, lng: -81.944959}},
+    {id: 4, name: "Thai Gardens", location: {lat: 26.555538, lng: -81.872587}}
+    ]
+};
+
+/**
+ * ViewModel
+ */
+
 var ViewModel = {
 
     restaurantList: ko.observableArray([]),
@@ -88,7 +100,6 @@ var ViewModel = {
         });
     },
    
-
     listItem: function(restaurantDetails) {
         this.id = ko.observable(restaurantDetails.id);
         this.name = ko.observable(restaurantDetails.name);
@@ -184,10 +195,8 @@ var ViewModel = {
     },
 
     getDetails: function() {
-        // Reset divs prior to loading new details
         ViewModel.resetDetails();
    
-        // Perform API call
         $.ajax({
             "url": "http://localhost:8080/business/search",
             "method": "POST",
@@ -203,18 +212,6 @@ var ViewModel = {
             ViewModel.showFail();
         });
 
-    },
-
-    showDetails: function(details) {
-        ViewModel.restaurantName(details.name);
-        ViewModel.restaurantAddressOne(details.location.address1);
-        ViewModel.restaurantAddressTwo(details.location.address2);
-        ViewModel.restaurantCity(details.location.city);
-        ViewModel.restaurantState(details.location.state);
-        ViewModel.restaurantZip(details.location.zip_code);
-        ViewModel.restaurantPrice(details.price);
-        ViewModel.restaurantRating(details.rating);
-        ViewModel.restaurantCuisine(details.categories[0].title)
     },
 
     getReviews: function(id) {
@@ -261,6 +258,18 @@ var ViewModel = {
         $('#details').fadeIn();
     },
 
+    showDetails: function(details) {
+        ViewModel.restaurantName(details.name);
+        ViewModel.restaurantAddressOne(details.location.address1);
+        ViewModel.restaurantAddressTwo(details.location.address2);
+        ViewModel.restaurantCity(details.location.city);
+        ViewModel.restaurantState(details.location.state);
+        ViewModel.restaurantZip(details.location.zip_code);
+        ViewModel.restaurantPrice(details.price);
+        ViewModel.restaurantRating(details.rating);
+        ViewModel.restaurantCuisine(details.categories[0].title)
+    },
+
     hideDetails: function() {
         $('#details').hide();
         $('#list').fadeIn();
@@ -268,6 +277,8 @@ var ViewModel = {
 
 }
 
+// Initialize the ViewModel
 ViewModel.init();
 
+// Apply bidings to the ViewModel
 ko.applyBindings(ViewModel);
