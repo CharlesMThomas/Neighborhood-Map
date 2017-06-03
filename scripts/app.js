@@ -14,6 +14,11 @@ var GoogleMaps = {
             zoom: 13,
             maxZoom: 16
         });
+
+        // Fit all markers in browser on resize
+        google.maps.event.addDomListener(window, 'resize', function() {
+            map.fitBounds(bounds); // `bounds` is a `LatLngBounds` object
+        });
     },
 
     // Animate the selected marker
