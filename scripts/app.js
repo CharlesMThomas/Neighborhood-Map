@@ -53,7 +53,7 @@ var GoogleMaps = {
 
         infowindow.open(map, marker);
     }
-}
+};
 
 
 /**
@@ -125,7 +125,7 @@ var ViewModel = {
        data.restaurants.forEach(function(restaurantData) {
             if (restaurantData.name.toLowerCase().indexOf(filterText) == 0) {
                 ViewModel.restaurantList.push(new ViewModel.listItem(restaurantData));
-            };
+            }
         });
 
         if(ViewModel.restaurantList().length != 0) {
@@ -199,7 +199,7 @@ var ViewModel = {
    
         $.ajax({
             "url": "http://localhost:8080/business/search",
-            "method": "POST",
+            "method": "GET",
             "data": {
                 "latitude": infowindow.marker.position.lat(),
                 "longitude": infowindow.marker.position.lng(),
@@ -218,7 +218,7 @@ var ViewModel = {
 
         $.ajax({
             "url": "http://localhost:8080/business/reviews",
-            "method": "POST",
+            "method": "GET",
             "data": {
                 "id": id,
             }
@@ -228,7 +228,7 @@ var ViewModel = {
             ViewModel.showReviews(data.reviews.reviews);
         }).fail(function() {
             ViewModel.showFail();
-        });;
+        });
 
     },
 
@@ -267,7 +267,7 @@ var ViewModel = {
         ViewModel.restaurantZip(details.location.zip_code);
         ViewModel.restaurantPrice(details.price);
         ViewModel.restaurantRating(details.rating);
-        ViewModel.restaurantCuisine(details.categories[0].title)
+        ViewModel.restaurantCuisine(details.categories[0].title);
     },
 
     hideDetails: function() {
@@ -275,7 +275,7 @@ var ViewModel = {
         $('#list').fadeIn();
     }
 
-}
+};
 
 // Initialize the ViewModel
 ViewModel.init();

@@ -9,15 +9,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(__dirname + '/'));
 
-app.post('/business/search', function(req, res) {
+app.get('/business/search', function(req, res) {
 
     var options = { method: 'GET',
     url: 'https://api.yelp.com/v3/businesses/search',
     qs: 
-    { latitude: req.body.latitude,
-        longitude: req.body.longitude,
+    { latitude: req.query.latitude,
+        longitude: req.query.longitude,
         radius: '1600',
-        term: req.body.name
+        term: req.query.name
     },
     headers: 
     { 'postman-token': 'a37c5299-b543-dccc-fe5f-330c126c7aa2',
@@ -32,9 +32,9 @@ app.post('/business/search', function(req, res) {
 
 });
 
-app.post('/business/reviews', function(req, res) {
+app.get('/business/reviews', function(req, res) {
 
-    var review_url = 'https://api.yelp.com/v3/businesses/' + req.body.id + '/reviews';
+    var review_url = 'https://api.yelp.com/v3/businesses/' + req.query.id + '/reviews';
 
     var options = { method: 'GET',
     url: review_url,
