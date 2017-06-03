@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+       <title>Neighborhood Map</title>
        <meta name="viewport" content="width=device-width, initial-scale=1">
        <link rel="stylesheet" href="styles/style.css">
        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -25,7 +26,7 @@
             <div id="detail" class="details">
 
                 <div id="loading" class="statuses">
-                    <img class="loading-gif" src="./assets/ajax-loader.gif">
+                    <img class="loading-gif" alt='spinning loading graphic' src="./assets/ajax-loader.gif">
                     <h3 class="loading-msg">Loading...</h3>
                 </div>
 
@@ -38,10 +39,10 @@
                     <span data-bind="click: hideDetails" class="show-result-links">Back to List</span>
                     <h2 data-bind="text: restaurantName"></h2>
                     <h3>Address</h3>
-                    <span><span data-bind="text: restaurantAddressOne"></span> <span data-bind="text: restaurantAddressTwo"></span></span></br>
-                    <span><span data-bind="text: restaurantCity"></span>, <span data-bind="text: restaurantState"></span> <span data-bind="text: restaurantZip"></span></span></br>
+                    <span><span data-bind="text: restaurantAddressOne"></span> <span data-bind="text: restaurantAddressTwo"></span></span><br>
+                    <span><span data-bind="text: restaurantCity"></span>, <span data-bind="text: restaurantState"></span> <span data-bind="text: restaurantZip"></span></span><br>
                     <h3>Details</h3>
-                    <span>Cost: <span data-bind="text: restaurantPrice"></span>  Rating: <span data-bind="text: restaurantRating"></span> Cuisine: <span data-bind="text: restaurantCuisine"></span></br></span>
+                    <span>Cost: <span data-bind="text: restaurantPrice"></span>  Rating: <span data-bind="text: restaurantRating"></span> Cuisine: <span data-bind="text: restaurantCuisine"></span><br></span>
                     <h3>Reviews</h3>
                     <ul data-bind="foreach: restaurantReviews">
                         <li data-bind="text: $data.text"></li>
