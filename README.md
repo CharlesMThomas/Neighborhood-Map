@@ -46,7 +46,7 @@ _This command installs all of the required dependencies listed in the package.js
 
 Clone this repository on to your local machine:
 
-`$ clone https://github.com/CharlesMThomas/Neighborhood-Map.git`
+`$ git clone https://github.com/CharlesMThomas/Neighborhood-Map.git <folder name>`
 
 or download the respository zip file and extract to your local machine.
 
