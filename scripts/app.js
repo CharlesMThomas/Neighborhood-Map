@@ -7,21 +7,12 @@ var GoogleMaps = {
     init: function() {
         infowindow = new google.maps.InfoWindow();
 
-        google.maps.event.addDomListener(infowindow, 'domready', function() {
-            $('.detail-links').click(function(){
-                if (data.listShown == false) {
-                    ViewModel.listToggleClick();
-                }
-                ViewModel.getDetails();
-            });
-        });
-
         bounds = new google.maps.LatLngBounds();
 
         map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 26.560909, lng: -81.914532},
-        zoom: 13,
-        maxZoom: 16
+            center: {lat: 26.560909, lng: -81.914532},
+            zoom: 13,
+            maxZoom: 16
         });
     },
 
@@ -34,6 +25,10 @@ var GoogleMaps = {
         newMarker.setAnimation(google.maps.Animation.BOUNCE);
         map.panTo(newMarker.position);
         GoogleMaps.makeInfowindow(newMarker);
+        if (data.listShown == false) {
+            ViewModel.listToggleClick();
+        }
+        ViewModel.getDetails();
     },
 
     // Initialize infowindow and show it
@@ -49,7 +44,7 @@ var GoogleMaps = {
             }
         });
 
-        infowindow.setContent('<div>' + marker.name + '</br></br><span class="detail-links">Click for Details</span></div>');
+        infowindow.setContent('<div>' + marker.name + '</div>');
 
         infowindow.open(map, marker);
     }
@@ -150,11 +145,11 @@ var ViewModel = {
             var id = ViewModel.restaurantList()[i].id();
 
             var marker = new google.maps.Marker({
-            map: map,
-            name: name,
-            position: position,
-            animation: google.maps.Animation.DROP,
-            id: id
+                map: map,
+                name: name,
+                position: position,
+                animation: google.maps.Animation.DROP,
+                id: id
             });
         
             bounds.extend(marker.position);
