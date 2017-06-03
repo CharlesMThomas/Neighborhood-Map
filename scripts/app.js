@@ -30,7 +30,7 @@ var GoogleMaps = {
         newMarker.setAnimation(google.maps.Animation.BOUNCE);
         map.panTo(newMarker.position);
         GoogleMaps.makeInfowindow(newMarker);
-        if (data.listShown == false) {
+        if (ViewModel.listShown() == false) {
             ViewModel.listToggleClick();
         }
         ViewModel.getDetails();
@@ -44,7 +44,7 @@ var GoogleMaps = {
         infowindow.addListener('closeclick', function() {
             infowindow.marker = null;
             marker.setAnimation();
-            if (data.listShown == true) {
+            if (ViewModel.listShown() == true) {
                 ViewModel.listToggleClick();
             }
         });
@@ -62,7 +62,6 @@ var GoogleMaps = {
 
 var data = {
     selected: null,
-    listShown: false,
     restaurant: null,
     reviews: null,
     restaurants: [
@@ -92,6 +91,7 @@ var ViewModel = {
     restaurantZip: ko.observable(),
     restaurantReviews: ko.observableArray([]),
     filterText: ko.observable(),
+    listShown: ko.observable(false),
 
     markers: [],
 
@@ -183,17 +183,7 @@ var ViewModel = {
     },
 
     listToggleClick: function() {
-        if (data.listShown == true ? ViewModel.hideList() : ViewModel.showList());
-    },
-
-    hideList: function() {
-        $("#sidebar").addClass('hide');
-        data.listShown = false;
-    },
-
-    showList: function() {
-        $("#sidebar").removeClass('hide');
-        data.listShown = true;
+        if (ViewModel.listShown() == true ? ViewModel.listShown(false) : ViewModel.listShown(true));
     },
 
     getDetails: function() {
