@@ -111,26 +111,29 @@ var ViewModel = {
     filterList: function() {
         ViewModel.restaurantList([]);
 
-        ViewModel.markers.forEach(function(marker) {
-            marker.setMap(null);
-        });
+        bounds = new google.maps.LatLngBounds();
 
-        ViewModel.markers = [];
+        for (var i = 0; i < data.restaurants.length; i++) {
+            var name = data.restaurants[i].name.toLowerCase();
+            var filterText = ViewModel.filterText().toLowerCase();
 
-       data.restaurants.forEach(function(restaurantData) {
-            if (restaurantData.name.toLowerCase().indexOf(ViewModel.filterText().toLowerCase()) == 0) {
-                ViewModel.restaurantList.push(new ViewModel.listItem(restaurantData));
+            if (name.indexOf(filterText) == 0) {
+                ViewModel.restaurantList.push(new ViewModel.listItem(data.restaurants[i]));
+                bounds.extend(ViewModel.markers[i].position);
+            } else {
+                ViewModel.markers[i].setVisible(false);
             }
-        });
-
-        if(ViewModel.restaurantList().length != 0) {
-            bounds = new google.maps.LatLngBounds();
         }
 
-        ViewModel.makeMarkers();
+        map.fitBounds(bounds);
+
     },
 
     clearFilter: function() {
+        ViewModel.markers.forEach(function(marker) {
+            marker.setVisible(true);
+        });
+
         if (ViewModel.filterText() != '') {
             ViewModel.filterText('');
             ViewModel.filterList();
