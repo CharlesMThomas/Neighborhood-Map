@@ -3,7 +3,6 @@
 A single page application featuring my favorite restaurants in Ft. Myers, FL. The app features both a map and list view for highlighting locations and retrieving third-party data about those locations from the Yelp API.
 
 ## Dependencies
-***
 
 Neighborhood map was built using Node in order to prevent cross-domain issues presented by the Yelp API. Below are the required Node modules necessary to run the Neighborhood Map app.
 
@@ -16,7 +15,6 @@ Neighborhood map was built using Node in order to prevent cross-domain issues pr
 * **body-parser** - Parse incoming request bodies in a middleware before your handlers, available under the req.body property.
 
 ## Configuration
-***
 
 Download and install Node for your operating system. Node is available for Mac, Linux and Windows.
 
@@ -45,7 +43,6 @@ _This command installs all of the required dependencies listed in the package.js
 `$ npm install body-parser`
 
 ## Installation
-***
 
 Clone this repository on to your local machine:
 
@@ -54,7 +51,6 @@ Clone this repository on to your local machine:
 or download the respository zip file and extract to your local machine.
 
 ## Operating Instructions
-***
 
 Start the express server:
 
