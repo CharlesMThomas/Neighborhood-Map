@@ -120,3 +120,13 @@ button {
 .maps {
     height: calc(100vh - 50px);
 }
+
+.attributions {
+    text-align: center;
+}
+
+.logos {
+    width: 100px;
+    display: block;
+    margin: -15px auto;
+}
