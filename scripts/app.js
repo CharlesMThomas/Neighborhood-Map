@@ -86,6 +86,7 @@ var ViewModel = {
     restaurantState: ko.observable(),
     restaurantZip: ko.observable(),
     restaurantReviews: ko.observableArray([]),
+    filterText: ko.observable(),
 
     markers: [],
 
@@ -108,7 +109,6 @@ var ViewModel = {
     },
 
     filterList: function() {
-        var filterText = document.getElementById('filter').value.toLowerCase();
         ViewModel.restaurantList([]);
 
         ViewModel.markers.forEach(function(marker) {
@@ -118,7 +118,7 @@ var ViewModel = {
         ViewModel.markers = [];
 
        data.restaurants.forEach(function(restaurantData) {
-            if (restaurantData.name.toLowerCase().indexOf(filterText) == 0) {
+            if (restaurantData.name.toLowerCase().indexOf(ViewModel.filterText().toLowerCase()) == 0) {
                 ViewModel.restaurantList.push(new ViewModel.listItem(restaurantData));
             }
         });
@@ -131,9 +131,8 @@ var ViewModel = {
     },
 
     clearFilter: function() {
-        var filterText = document.getElementById('filter').value;
-        if (filterText != '') {
-            document.getElementById('filter').value = '';
+        if (ViewModel.filterText() != '') {
+            ViewModel.filterText('');
             ViewModel.filterList();
         }
     },

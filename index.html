@@ -13,7 +13,7 @@
         <div id="sidebar" class="sidebars hide">
 
             <div id="list" class="lists">
-                <input id="filter" class="form-control" type="text" placeholder="Filter Results">
+                <input data-bind="textInput: filterText" class="form-control" type="text" placeholder="Filter Results">
                 <button data-bind="click: clearFilter">Clear</button>
                 <button data-bind="click: filterList">Filter</button>
 
