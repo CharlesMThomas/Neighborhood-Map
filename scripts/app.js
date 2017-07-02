@@ -190,7 +190,7 @@ var ViewModel = {
         ViewModel.resetDetails();
    
         $.ajax({
-            "url": "http://localhost:8080/business/search",
+            "url": "https://cmt-neighborhood-map.herokuapp.com/business/search",
             "method": "GET",
             "data": {
                 "latitude": infowindow.marker.position.lat(),
@@ -209,7 +209,7 @@ var ViewModel = {
     getReviews: function(id) {
 
         $.ajax({
-            "url": "http://localhost:8080/business/reviews",
+            "url": "https://cmt-neighborhood-map.herokuapp.com/business/reviews",
             "method": "GET",
             "data": {
                 "id": id,
