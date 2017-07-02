@@ -2,6 +2,8 @@
 
 A single page application featuring my favorite restaurants in Ft. Myers, FL. The app features both a map and list view for highlighting locations and retrieving third-party data about those locations from the Yelp API.
 
+View Demo on [Heroku](https://cmt-neighborhood-map.herokuapp.com/)
+
 ## Dependencies
 
 Neighborhood map was built using Node in order to prevent cross-domain issues presented by the Yelp API. Below are the required Node modules necessary to run the Neighborhood Map app.
