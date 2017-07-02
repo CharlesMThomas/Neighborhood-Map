@@ -22,7 +22,7 @@ body {
     position: absolute;
     top: 50px;
     left: 0;
-    margin-left: 0;
+    margin-left: -360px;
     width: 350px;
     height: calc(100vh - 50px);
     background: #fff; /* For browsers that do not support gradients */
@@ -32,8 +32,8 @@ body {
     transition: margin-left 0.5s linear;
 }
 
-.sidebars.hide {
-    margin-left: -360px;
+.sidebars.show {
+    margin-left: 0;
 }
 
 .lists ul li {
